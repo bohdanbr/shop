@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <Products />
+  <div id="app">
+    <ProductList />
   </div>
 </template>
 
 <script>
-import Products from './components/Products.vue';
+import ProductList from './components/ProductList.vue';
 
 export default {
   components: {
-    Products
+    ProductList
   }
 };
 </script>
