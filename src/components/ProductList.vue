@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="content">
-      <div class="grid-container">
+      <div class="grid-container" :class="store.productsDesign">
         <div v-for="(item, index) in items" :key="index" class="item">
           <div class="item-content">
             <div class="img"><img :src="item.image" /></div>
@@ -19,6 +19,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { store } from '../store.js'
 
 const items = ref([]);
 
@@ -39,11 +40,16 @@ onMounted(async () => {
 .grid-container {
   display: grid;
   gap: 20px;
+
+}
+.grid-container.type-2 {
+  grid-template-columns: repeat(1, 1fr);
 }
 
 .item {
   display: flex;
   border: 1px solid #ccc;
+  padding: 20px;;
   /* Остальные стили блока */
 }
 
@@ -68,7 +74,22 @@ onMounted(async () => {
 /* Дополнительные стили */
 .img img {
   width: 50%; /* Адаптивный размер изображений */
-  height: auto;
-  object-fit: cover;
+  height: 100px;
+  object-fit: contain;
+
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.type-2 .img {
+  justify-content: start;
+
+}
+.type-2 .img img {
+  width: fit-content;
+  
 }
 </style>

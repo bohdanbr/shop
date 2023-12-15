@@ -1,15 +1,17 @@
 <template>
   <div id="app">
+    <Tools />
     <ProductList />
   </div>
 </template>
 
-<script>
+<script setup>
 import ProductList from './components/ProductList.vue';
-
-export default {
-  components: {
-    ProductList
-  }
-};
+import Tools from './components/Tools.vue';
 </script>
+
+<style>
+  #app {
+    margin: 20px;
+  }
+</style>
