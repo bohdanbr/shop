@@ -1,20 +1,25 @@
 <template>
   <div :class="store.theme">
-  <div class="wrapper">
+    <div class="wrapper">
       <div class="loader-container" v-if="store.loading">
         <span class="loader"></span>
       </div>
       <template v-else>
-        <div v-if="store.error">ОШИБКА БЛЯТЬ</div>
-        <template v-else>
-        <Basket />
-        <Tools />
-        <div class="content">
-          <Menu />
-          <ProductList />
+        <div v-if="store.error" class="fetch-error">
+          <div class="error-text">
+            <img src="./assets/images/error.png" alt="Error image">
+            Не удалось загрузить продукты. Пожалуйста, попробуйте ещё раз или немного позже.
+          </div>
         </div>
+        <template v-else>
+          <Basket />
+          <Tools />
+          <div class="content">
+            <Menu />
+            <ProductList />
+          </div>
+        </template>
       </template>
-    </template>
     </div>
   </div>
 </template>
@@ -78,5 +83,27 @@ store.fetchProducts()
   100% {
     transform: rotate(360deg);
   }
+}
+
+.fetch-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 30px;
+  border-radius: 10px;
+  
+}
+.error-text {
+  background-color: rgb(252, 252, 252);
+  padding: 20px;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.error-text img {
+  width: 25%;
+  height: 25%;
 }
 </style>
