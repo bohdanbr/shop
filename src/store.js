@@ -45,6 +45,10 @@ export const store = reactive({
 
   addToBasket: (id) => {
     if (!store.basket.includes(id)) store.basket.push(id);
+  },
+
+  removeFromBasket: (id) => {
+    store.basket = store.basket.filter(product => product !== id);
   }
 
 });

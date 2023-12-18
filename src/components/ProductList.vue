@@ -15,7 +15,8 @@
               <div class="description">
                 <p>Описание: {{ product.description }}</p>
               </div>
-              <button @click="store.addToBasket(product.id)">Добавить в корзину</button>
+              <button v-if="!store.basket.includes(product.id)" @click="store.addToBasket(product.id)">Добавить в корзину</button>
+              <button v-else @click="store.removeFromBasket(product.id)">Удалить в корзину</button>
             </div>
           </div>
         </div>
