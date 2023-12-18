@@ -15,6 +15,7 @@
               <div class="description">
                 <p>Описание: {{ product.description }}</p>
               </div>
+              <button @click="store.addToBasket(product.id)">Добавить в корзину</button>
             </div>
           </div>
         </div>

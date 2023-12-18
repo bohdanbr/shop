@@ -10,10 +10,7 @@
 <script setup>
 import { store } from '../store.js';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faGrip, faGripLines, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
-library.add(faGrip, faGripLines, faSun, faMoon);
 
 const toggleTheme = () => {
   store.changeTheme(store.theme === 'day-theme' ? 'night-theme' : 'day-theme');

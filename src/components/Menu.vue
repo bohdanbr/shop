@@ -18,6 +18,7 @@ import { store } from '../store';
 <style>
 .menu {
     padding: 20px;
+    width: 300px;
 }
 
 ul {
@@ -30,6 +31,7 @@ ul {
 ul li {
     margin-top: 20px;
     cursor: pointer;
+    text-transform: capitalize;
 }
 
 ul li:hover {

@@ -1,16 +1,20 @@
 <template>
+  <div :class="store.theme">
   <div class="wrapper">
-    <div :class="store.theme">
       <div class="loader-container" v-if="store.loading">
         <span class="loader"></span>
       </div>
       <template v-else>
+        <div v-if="store.error">ОШИБКА БЛЯТЬ</div>
+        <template v-else>
+        <Basket />
         <Tools />
         <div class="content">
           <Menu />
           <ProductList />
         </div>
       </template>
+    </template>
     </div>
   </div>
 </template>
@@ -19,6 +23,7 @@
 import ProductList from './components/ProductList.vue';
 import Tools from './components/Tools.vue';
 import Menu from './components/Menu.vue';
+import Basket from './components/Basket.vue';
 import { store } from './store';
 
 store.fetchProducts()

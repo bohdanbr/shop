@@ -8,6 +8,7 @@ export const store = reactive({
   error: '',
   loading: true,
   activeCategory: 'All',
+  basket: [],
 
   changeTheme: (theme) => {
     store.theme = theme
@@ -21,7 +22,9 @@ export const store = reactive({
       }
       store.products = await response.json();
       store.products.forEach(product => {
-        if (!store.categories.includes(product.category)) store.categories.push(product.category)
+        const category = product.category;
+        
+        if (!store.categories.includes(category)) store.categories.push(category);
       });
     } catch (error) {
       store.error = error.message;
@@ -31,11 +34,17 @@ export const store = reactive({
   },
   getProducts: () => {
     if (store.activeCategory.toLowerCase() === 'all') {
-      return store.products
+      return store.products;
     } else {
-      return store.products.filter(product => product.category === store.activeCategory)
+      return store.products.filter(product => product.category === store.activeCategory);
     }
   },
-  changeCategory: (status = 'all') => store.activeCategory = status,
+  changeCategory: (status = 'All') => {
+    store.activeCategory = status;
+  },
 
-})
+  addToBasket: (id) => {
+    if (!store.basket.includes(id)) store.basket.push(id);
+  }
+
+});
