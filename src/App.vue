@@ -38,11 +38,13 @@ store.fetchProducts()
 .day-theme {
   background-color: white;
   color: black;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .night-theme {
-  background-color: black;
+  background-color: rgb(23, 17, 31);
   color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .loader-container {

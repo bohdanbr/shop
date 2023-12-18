@@ -90,4 +90,5 @@ import { store } from '../store.js'
 .type-2 .img img {
   width: fit-content;
 
-}</style>
+}
+</style>
