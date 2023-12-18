@@ -29,7 +29,13 @@ export const store = reactive({
       store.loading = false;
     }
   },
-
+  getProducts: () => {
+    if (store.activeCategory.toLowerCase() === 'all') {
+      return store.products
+    } else {
+      return store.products.filter(product => product.category === store.activeCategory)
+    }
+  },
   changeCategory: (status = 'all') => store.activeCategory = status,
 
 })

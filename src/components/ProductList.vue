@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="content">
       <div class="grid-container" :class="store.productsDesign">
-        <div v-for="(product, index) in store.products" :key="index" class="item"> <!-- in store.getProducts() -->
+        <div v-for="(product, index) in store.getProducts()" :key="index" class="item">
           <div class="item-content">
             <div class="img"><img :src="product.image" /></div>
             <div class="details">
@@ -43,8 +43,6 @@ import { store } from '../store.js'
   display: flex;
   border: 1px solid #ccc;
   padding: 20px;
-  ;
-  /* Остальные стили блока */
 }
 
 @media screen and (min-width: 768px) {
@@ -68,7 +66,6 @@ import { store } from '../store.js'
   }
 }
 
-/* Дополнительные стили */
 .img img {
   width: 50%;
   /* Адаптивный размер изображений */

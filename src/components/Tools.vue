@@ -31,7 +31,7 @@ svg {
 }
 svg:hover {
   cursor: pointer;
-  color: rgb(88, 88, 88);
+  color: rgba(95, 18, 18, 0.588);
 }
 
 .tools {

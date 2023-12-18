@@ -9,9 +9,7 @@
         </ul>
     </div>
 </template>
-<!-- фильровать значение по activeCategory 
-store > getProducts
-Menu >  -->
+
 <script setup>
 import { store } from '../store';
 
@@ -25,13 +23,21 @@ import { store } from '../store';
 ul {
     list-style: none;
     padding: 0;
+    font-size: 20px;
+    transition: color 0.3s ease;
 }
 
 ul li {
-    margin-top: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+ul li:hover {
+  color: rgba(95, 18, 18, 0.588);
 }
 
 li.active {
-    color: blue;
+    color: rgb(170, 47, 47);
+    font-size: 42px;
 }
 </style>
