@@ -1,8 +1,10 @@
 <template>
+    <router-link :to="{name: 'Basket'}">
     <div class="basket">
         <span v-if="store.basket.length">{{ store.basket.length }}</span>
         <font-awesome-icon icon="fa-solid fa-basket-shopping" size="2xl" />
     </div>
+</router-link>
 </template>
 
 <script setup>

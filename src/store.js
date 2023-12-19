@@ -1,4 +1,5 @@
 import { reactive } from 'vue'
+import router from './router';
 
 export const store = reactive({
   theme: 'day-theme',
@@ -49,6 +50,8 @@ export const store = reactive({
 
   removeFromBasket: (id) => {
     store.basket = store.basket.filter(product => product !== id);
-  }
-
+  },
+  goBack: () => {
+    router.back();
+  },
 });
