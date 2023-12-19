@@ -7,7 +7,7 @@
             <template v-else>
                 <div v-if="store.error" class="fetch-error">
                     <div class="error-text">
-                        <img src="./assets/images/error.png" alt="Error image">
+                        <img src="../assets/images/error.png" alt="Error image">
                         Не удалось загрузить продукты. Пожалуйста, попробуйте ещё раз или немного позже.
                     </div>
                 </div>
