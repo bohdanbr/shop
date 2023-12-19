@@ -27,8 +27,8 @@
 <script setup>
 import ProductList from '../components/ProductList.vue';
 import Tools from '../components/Tools.vue';
-import Menu from '../components/Menu.vue';
 import Basket from '../components/Basket.vue';
+import Menu from '../components/Menu.vue';
 import { store } from '../store';
 
 

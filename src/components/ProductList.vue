@@ -3,7 +3,7 @@
     <div class="content">
       <div class="grid-container" :class="store.productsDesign">
         <div v-for="(product, index) in store.getProducts()" :key="index" class="item">
-          <div class="item-content">
+          <router-link :to="{ name: 'ProductInfo', params: { id: product.id } }" class="item-content">
             <div class="img"><img :src="product.image" /></div>
             <div class="details">
               <div class="title">
@@ -15,10 +15,11 @@
               <div class="description">
                 <p>Описание: {{ product.description }}</p>
               </div>
-              <button v-if="!store.basket.includes(product.id)" @click="store.addToBasket(product.id)">Добавить в корзину</button>
-              <button v-else @click="store.removeFromBasket(product.id)">Удалить в корзину</button>
+              <button v-if="!store.basket.includes(product.id)" @click.prevent="store.addToBasket(product.id)">Добавить в
+                корзину</button>
+              <button v-else @click.prevent="store.removeFromBasket(product.id)">Удалить из корзины</button>
             </div>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -31,6 +32,14 @@ import { store } from '../store.js'
 </script>
 
 <style scoped>
+.item-content {
+  text-decoration: none;
+  color:black;
+}
+.item-content button {
+  font-size: 30px;
+  border-radius: 10px;
+}
 .grid-container {
   display: grid;
   gap: 20px;

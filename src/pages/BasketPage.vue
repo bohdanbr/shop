@@ -1,8 +1,8 @@
 <template>
     <button @click="store.goBack">Назад</button>
-    <div class="basket">
+    <div class="basket-page">
         <h1>Корзина</h1>
-        <div v-if="basketProducts.length === 0">
+        <div v-if="basketProducts.length === 0" class="basket-empty-text">
             <p>Ваша корзина пуста.</p>
         </div>
         <div v-else>
@@ -11,6 +11,7 @@
                 <div>{{ product.title }}</div>
                 <div>Цена: ${{ product.price }}</div>
                 <p>Описание: {{ product.description }}</p>
+                <button @click="store.removeFromBasket(product.id)">Удалить из корзины</button>
             </div>
         </div>
     </div>
@@ -24,10 +25,17 @@ const basketProducts = store.products.filter(product => store.basket.includes(pr
 </script>
 
 <style>
-.basket {
-    display: flex;
-    flex-direction: column;
+.basket-page {
+
 }
+.basket-empty-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Для центрирования по вертикали на всю высоту экрана */
+    font-size: 50px;
+}
+
 .basket-item { 
     display: flex;
   border: 1px solid #ccc;
