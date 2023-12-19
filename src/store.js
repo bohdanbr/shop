@@ -14,15 +14,18 @@ export const store = reactive({
   changeTheme: (theme) => {
     store.theme = theme
   },
+  setCategories: () => {
+    store.products.forEach(product => {
+      const category = product.category;
+      if (!store.categories.includes(category)) store.categories.push(category);
+    })
+  },
   fetchProducts: async () => {
     store.loading = true;
     if (localStorage.getItem('products')) {
       store.products = JSON.parse(localStorage.getItem('products'))
-      store.products.forEach(product => {
-        const category = product.category;
-        if (!store.categories.includes(category)) store.categories.push(category);
-        store.loading = false;
-      });
+      store.setCategories()
+      store.loading = false;
       return
     }
     try {
@@ -32,11 +35,7 @@ export const store = reactive({
       }
       store.products = await response.json();
       localStorage.setItem('products', JSON.stringify(store.products))
-      store.products.forEach(product => {
-        const category = product.category;
-
-        if (!store.categories.includes(category)) store.categories.push(category);
-      });
+      store.setCategories()
     } catch (error) {
       store.error = error.message;
     } finally {
