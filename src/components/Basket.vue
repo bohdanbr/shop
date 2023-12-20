@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 </script>
 
-<style>
+<style scoped>
 .basket {
     position: relative;
     width: fit-content;

@@ -2,15 +2,19 @@
     <button @click="store.goBack">Назад</button>
     <div class="basket-page">
         <h1>Корзина</h1>
+        <div class="basket">
+        <span v-if="store.basket.length">{{ store.basket.length }}</span>
+        <font-awesome-icon icon="fa-solid fa-basket-shopping" size="2xl" />
+    </div>
         <div v-if="basketProducts.length === 0" class="basket-empty-text">
             <p>Ваша корзина пуста.</p>
         </div>
         <div v-else>
             <div v-for="(product, index) in basketProducts" :key="index" class="basket-item">
-                <div class="img"><img :src="product.image" /></div>
-                <div>{{ product.title }}</div>
-                <div>Цена: ${{ product.price }}</div>
-                <p>Описание: {{ product.description }}</p>
+                <span class="img"><img :src="product.image" /></span>
+                <span>{{ product.title }}</span>
+                <span>Цена: ${{ product.price }}</span>
+                <span>Описание: {{ product.description }}</span>
                 <button @click="store.removeFromBasket(product.id)">Удалить из корзины</button>
             </div>
         </div>
@@ -19,9 +23,11 @@
 
 <script setup>
 import { store } from '../store';
+import { computed } from 'vue';
 
-const basketProducts = store.products.filter(product => store.basket.includes(product.id));
-
+const basketProducts = computed(() => {
+  return store.products.filter(product => store.basket.includes(product.id));
+});
 </script>
 
 <style>
