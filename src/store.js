@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import router from './router';
 
 export const store = reactive({
@@ -14,12 +14,14 @@ export const store = reactive({
   changeTheme: (theme) => {
     store.theme = theme
   },
+  
   setCategories: () => {
     store.products.forEach(product => {
       const category = product.category;
       if (!store.categories.includes(category)) store.categories.push(category);
     })
   },
+
   fetchProducts: async () => {
     store.loading = true;
     if (localStorage.getItem('products')) {
@@ -42,6 +44,7 @@ export const store = reactive({
       store.loading = false;
     }
   },
+
   getProducts: () => {
     if (store.activeCategory.toLowerCase() === 'all') {
       return store.products;
@@ -49,17 +52,42 @@ export const store = reactive({
       return store.products.filter(product => product.category === store.activeCategory);
     }
   },
+
   changeCategory: (status = 'All') => {
     store.activeCategory = status;
   },
 
   addToBasket: (id) => {
-    if (!store.basket.includes(id)) store.basket.push(id);
+    const index = store.basket.findIndex(item => item.id === id);
+    if (index !== -1) {
+      store.basket[index].quantity++; // Увеличиваем количество товара на 1
+    } else {
+      store.basket.push({ id, quantity: 1 }); // Добавляем товар с начальным количеством 1
+    }
   },
 
   removeFromBasket: (id) => {
     store.basket = store.basket.filter(product => product !== id);
   },
+  getItemQuantityById: (id) => {
+    const item = store.basket.find(item => item.id === id);
+    return item ? item.quantity : 0;
+  },
+  getTotalPriceById: (id) => {
+    const item = store.basket.find(item => item.id === id);
+    const product = store.products.find(product => product.id === id);
+    return item ? item.quantity * product.price : 0;
+  },
+  getTotalPriceForAllItems: () => {
+    const totalPrice = store.basket.reduce((total, item) => {
+      const product = store.products.find(product => product.id === item.id);
+      return total + item.quantity * product.price;
+    }, 0);
+  
+    // Округление до двух знаков после запятой
+    return totalPrice.toFixed(2);
+  },
+  
   goBack: () => {
     router.back();
   },
